@@ -1,0 +1,346 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Annotate 1.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/dans-annotator\n"
+"POT-Creation-Date: 2025-11-16T12:27:34+00:00\n"
+"Language: ro_RO\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
+"20)) ? 1 : 2);\n"
+"X-Generator: Codex CLI\n"
+
+#. Plugin Name of the plugin
+#: dans-annotator.php includes/admin.php:14
+msgid "Dan's Annotator"
+msgstr "Dan's Annotator"
+
+#. Description of the plugin
+#: dans-annotator.php
+msgid "Page annotation system — with threaded comments."
+msgstr "Sistem de adnotări pe pagină — cu comentarii ierarhizate."
+
+#. Author of the plugin
+#: dans-annotator.php
+msgid "DanL"
+msgstr "DanL"
+
+#: dans-annotator.php:120
+msgid "Once Weekly (Dan's Annotator)"
+msgstr "O dată pe săptămână (Dan's Annotator)"
+
+#: dans-annotator.php:160
+msgid "On"
+msgstr "Activ"
+
+#: dans-annotator.php:161
+msgid "Off"
+msgstr "Oprit"
+
+#: dans-annotator.php:162 dans-annotator.php:349
+msgid "View All"
+msgstr "Vezi toate notițele"
+
+#. translators: %d: number of hidden items in the "View All" list.
+#: dans-annotator.php:164
+#, php-format
+msgid "View All (%d hidden)"
+msgstr "Vezi toate (%d ascunse)"
+
+#: dans-annotator.php:165 dans-annotator.php:266
+msgid "Discuss this element"
+msgstr "Notează ceva despre acest element"
+
+#: dans-annotator.php:166
+msgid "Thread is closed"
+msgstr "Notița este închisă"
+
+#: dans-annotator.php:167
+msgid "Please write a comment"
+msgstr "Scrie mai întâi un mesaj"
+
+#: dans-annotator.php:168
+msgid "No comments yet"
+msgstr "Nicio intervenție până acum"
+
+#: dans-annotator.php:169 includes/rest.php:1099 includes/rest.php:1109
+msgid "User"
+msgstr "Autor"
+
+#: dans-annotator.php:170 dans-annotator.php:310
+msgid "Everything on this page"
+msgstr "Toate notițele din pagină"
+
+#. translators: %d: number of selectors that no longer exist on the page.
+#: dans-annotator.php:172
+#, php-format
+msgid "%d missing selectors"
+msgstr "%d elemente lipsă"
+
+#: dans-annotator.php:173 dans-annotator.php:292
+msgid "Really close this thread? No new comments can be added."
+msgstr "Sigur închizi această notiță? Nu se vor mai putea adăuga mesaje."
+
+#: dans-annotator.php:174 dans-annotator.php:299
+msgid "Really delete this thread? This cannot be undone."
+msgstr "Ștergi definitiv această notiță? Acțiunea nu poate fi anulată."
+
+#: dans-annotator.php:175
+msgid "Could not close thread."
+msgstr "Notița nu a putut fi închisă."
+
+#: dans-annotator.php:176
+msgid "Failed to delete thread."
+msgstr "Notița nu a putut fi ștearsă."
+
+#: dans-annotator.php:177
+msgid ""
+"Disconnect from this session? You will need to reopen the link from your "
+"email."
+msgstr "Deconectezi această sesiune? Va trebui să redeschizi linkul din e-mail."
+
+#: dans-annotator.php:178
+msgid "Disconnected. Please revisit the email link to continue annotating."
+msgstr "Deconectat. Revizitează linkul din e-mail pentru a continua adnotarea."
+
+#: dans-annotator.php:210 includes/admin.php:204
+msgid ""
+"Help Dan maintain this and other plugins. He wants to become a better "
+"programmer by building free plugins."
+msgstr "Ajută-l pe Dan să întrețină acest și alte pluginuri. Vrea să devină un programator mai bun construind pluginuri gratuite."
+
+#: dans-annotator.php:212
+msgid "Configure Dan's Annotator"
+msgstr "Configurează Dan's Annotator"
+
+#: dans-annotator.php:265
+msgid "Annotations"
+msgstr "Notițe"
+
+#: dans-annotator.php:269
+msgid "Copy link"
+msgstr "Copiază linkul"
+
+#: dans-annotator.php:270
+msgid "View all"
+msgstr "Vezi toate"
+
+#: dans-annotator.php:271 dans-annotator.php:314
+msgid "Close"
+msgstr "Închide"
+
+#: dans-annotator.php:275
+msgid "Selector:"
+msgstr "Selector:"
+
+#: dans-annotator.php:279
+msgid "Write a comment. Use @username to tag."
+msgstr "Scrie un mesaj. Folosește @nume pentru a menționa pe cineva."
+
+#: dans-annotator.php:282
+msgid "Post"
+msgstr "Trimite"
+
+#: dans-annotator.php:283 dans-annotator.php:295 dans-annotator.php:302
+#: dans-annotator.php:351
+msgid "Cancel"
+msgstr "Renunță"
+
+#: dans-annotator.php:286
+msgid "Close Thread"
+msgstr "Închide notița"
+
+#: dans-annotator.php:287
+msgid "Delete Thread"
+msgstr "Șterge notița"
+
+#: dans-annotator.php:294
+msgid "Yes, Close"
+msgstr "Da, închide"
+
+#: dans-annotator.php:301
+msgid "Yes, Delete"
+msgstr "Da, șterge"
+
+#: dans-annotator.php:309
+msgid "All Annotations"
+msgstr "Toate notițele"
+
+#: dans-annotator.php:319
+msgid "No annotations yet."
+msgstr "Nu există încă notițe."
+
+#: dans-annotator.php:320
+msgid "Click an element on the page to start annotating."
+msgstr "Selectează un element din pagină ca să adaugi o notiță."
+
+#: dans-annotator.php:326
+msgid "Missing"
+msgstr "Lipsesc"
+
+#: dans-annotator.php:333
+msgid "Open"
+msgstr "Deschise"
+
+#: dans-annotator.php:340
+msgid "Closed"
+msgstr "Închise"
+
+#: dans-annotator.php:350
+msgid "Create New"
+msgstr "Creează notiță"
+
+#: dans-annotator.php:353
+msgid "Disconnect"
+msgstr "Deconectează"
+
+#: includes/admin.php:13 includes/admin.php:141
+msgid "Dan's Annotator Settings"
+msgstr "Setări Dan's Annotator"
+
+#: includes/admin.php:129
+msgid "Settings saved."
+msgstr "Setări salvate."
+
+#: includes/admin.php:135
+msgid "All Dan's Annotator data was deleted."
+msgstr "Toate datele Dan's Annotator au fost șterse."
+
+#: includes/admin.php:148
+msgid "Collaboration"
+msgstr "Colaborare"
+
+#: includes/admin.php:149
+msgid "Outside Collaborators"
+msgstr "Colaboratori externi"
+
+#: includes/admin.php:151
+msgid "Admin only"
+msgstr "Doar administrator"
+
+#: includes/admin.php:153
+msgid ""
+"Let invited collaborators comment without full accounts. We keep their "
+"sessions scoped to the threads you share with them."
+msgstr "Permite colaboratorilor invitați să comenteze fără cont complet. Le limităm sesiunea la firele pe care le partajezi."
+
+#: includes/admin.php:161
+msgid "Allow outside collaborators"
+msgstr "Permite colaboratorii externi"
+
+#: includes/admin.php:163
+msgid ""
+"When enabled, invite links can be shared with non-users so they can "
+"participate in specific threads."
+msgstr "Când este activ, linkurile de invitație pot fi partajate cu non-utilizatori pentru a participa la fire specifice."
+
+#: includes/admin.php:172
+msgid "Auto-delete old threads"
+msgstr "Șterge automat firele vechi"
+
+#: includes/admin.php:174
+msgid ""
+"Automatically remove annotation threads and comments after they have been "
+"inactive past the window below."
+msgstr "Șterge automat firele și comentariile inactive după intervalul de mai jos."
+
+#: includes/admin.php:179
+msgid "Auto-delete window (months since last activity)"
+msgstr "Interval pentru ștergere automată (luni de inactivitate)"
+
+#: includes/admin.php:186
+msgid "months"
+msgstr "luni"
+
+#: includes/admin.php:191
+msgid "Save Settings"
+msgstr "Salvează setările"
+
+#: includes/admin.php:198
+msgid "Fuel the roadmap"
+msgstr "Alimentează foaia de parcurs"
+
+#: includes/admin.php:199
+msgid "Donate to Dan's Annotator"
+msgstr "Donează pentru Dan's Annotator"
+
+#: includes/admin.php:201
+msgid "Thank you"
+msgstr "Mulțumesc"
+
+#: includes/admin.php:202
+msgid "Close donation panel"
+msgstr "Închide panoul de donații"
+
+#: includes/admin.php:206
+msgid "Ethereum address"
+msgstr "Adresă Ethereum"
+
+#: includes/admin.php:209
+msgid "Scan to donate"
+msgstr "Scanează pentru a dona"
+
+#: includes/admin.php:215
+msgid ""
+"Send any amount you like — every tip directly funds maintenance and features."
+msgstr "Trimite orice sumă — fiecare bacșiș finanțează direct mentenanța și funcționalitățile."
+
+#: includes/admin.php:222
+msgid "Maintenance"
+msgstr "Mentenanță"
+
+#: includes/admin.php:223
+msgid "Delete all Dan's Annotator data"
+msgstr "Șterge toate datele Dan's Annotator"
+
+#: includes/admin.php:225
+msgid "Irreversible"
+msgstr "Ireversibil"
+
+#: includes/admin.php:227
+msgid ""
+"Remove every annotation thread, comment, tag, and collaborator. Use when you "
+"need a clean slate."
+msgstr "Șterge toate firele, comentariile, etichetele și colaboratorii. Folosește când vrei un început curat."
+
+#: includes/admin.php:229
+msgid "Delete all Dan's Annotator data? This cannot be undone."
+msgstr "Ștergi toate datele Dan's Annotator? Acțiunea nu poate fi anulată."
+
+#: includes/admin.php:232
+msgid "Delete Everything"
+msgstr "Șterge tot"
+
+#: includes/admin.php:325
+msgid "You do not have permission to delete Dan's Annotator data."
+msgstr "Nu ai permisiunea să ștergi datele Dan's Annotator."
+
+#: includes/rest.php:773
+msgid "Someone"
+msgstr "Cineva"
+
+#. translators: 1: name of the person who tagged the user, 2: link to the thread.
+#: includes/rest.php:777
+#, php-format
+msgid "You were tagged in a note by %1$s — %2$s"
+msgstr "Ai fost menționat într-o notiță de %1$s — %2$s"
+
+#: includes/rest.php:799
+msgid "Please do not share this link; it is tied to your email address."
+msgstr "Nu distribui acest link; este legat de adresa ta de e-mail."
+
+#. translators: 1: name of the person who tagged you, 2: site name.
+#: includes/rest.php:805
+#, php-format
+msgid "%1$s tagged you in a note on %2$s"
+msgstr "%1$s te-a menționat într-o notiță pe %2$s"
+
+#. translators: %s: name of the person who tagged you.
+#: includes/rest.php:807
+#, php-format
+msgid "%s tagged you in a note:"
+msgstr "%s te-a menționat într-o notiță:"
+
+#: includes/rest.php:808
+msgid "Open this note"
+msgstr "Deschide notița"

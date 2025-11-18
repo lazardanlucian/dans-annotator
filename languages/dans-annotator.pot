@@ -1,0 +1,350 @@
+# Copyright (C) 2025 DanL
+# This file is distributed under the GPLv2 or later.
+msgid ""
+msgstr ""
+"Project-Id-Version: Dan's Annotator 1.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/dans-annotator\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2025-11-16T12:27:34+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.12.0\n"
+"X-Domain: dans-annotator\n"
+
+#. Plugin Name of the plugin
+#: dans-annotator.php
+#: includes/admin.php:14
+msgid "Dan's Annotator"
+msgstr ""
+
+#. Description of the plugin
+#: dans-annotator.php
+msgid "Page annotation system — with threaded comments."
+msgstr ""
+
+#. Author of the plugin
+#: dans-annotator.php
+msgid "DanL"
+msgstr ""
+
+#: dans-annotator.php:120
+msgid "Once Weekly (Dan's Annotator)"
+msgstr ""
+
+#: dans-annotator.php:160
+msgid "On"
+msgstr ""
+
+#: dans-annotator.php:161
+msgid "Off"
+msgstr ""
+
+#: dans-annotator.php:162
+#: dans-annotator.php:349
+msgid "View All"
+msgstr ""
+
+#. translators: %d: number of hidden items in the "View All" list.
+#: dans-annotator.php:164
+#, php-format
+msgid "View All (%d hidden)"
+msgstr ""
+
+#: dans-annotator.php:165
+#: dans-annotator.php:266
+msgid "Discuss this element"
+msgstr ""
+
+#: dans-annotator.php:166
+msgid "Thread is closed"
+msgstr ""
+
+#: dans-annotator.php:167
+msgid "Please write a comment"
+msgstr ""
+
+#: dans-annotator.php:168
+msgid "No comments yet"
+msgstr ""
+
+#: dans-annotator.php:169
+#: includes/rest.php:1099
+#: includes/rest.php:1109
+msgid "User"
+msgstr ""
+
+#: dans-annotator.php:170
+#: dans-annotator.php:310
+msgid "Everything on this page"
+msgstr ""
+
+#. translators: %d: number of selectors that no longer exist on the page.
+#: dans-annotator.php:172
+#, php-format
+msgid "%d missing selectors"
+msgstr ""
+
+#: dans-annotator.php:173
+#: dans-annotator.php:292
+msgid "Really close this thread? No new comments can be added."
+msgstr ""
+
+#: dans-annotator.php:174
+#: dans-annotator.php:299
+msgid "Really delete this thread? This cannot be undone."
+msgstr ""
+
+#: dans-annotator.php:175
+msgid "Could not close thread."
+msgstr ""
+
+#: dans-annotator.php:176
+msgid "Failed to delete thread."
+msgstr ""
+
+#: dans-annotator.php:177
+msgid "Disconnect from this session? You will need to reopen the link from your email."
+msgstr ""
+
+#: dans-annotator.php:178
+msgid "Disconnected. Please revisit the email link to continue annotating."
+msgstr ""
+
+#: dans-annotator.php:210
+#: includes/admin.php:204
+msgid "Help Dan maintain this and other plugins. He wants to become a better programmer by building free plugins."
+msgstr ""
+
+#: dans-annotator.php:212
+msgid "Configure Dan's Annotator"
+msgstr ""
+
+#: dans-annotator.php:265
+msgid "Annotations"
+msgstr ""
+
+#: dans-annotator.php:269
+msgid "Copy link"
+msgstr ""
+
+#: dans-annotator.php:270
+msgid "View all"
+msgstr ""
+
+#: dans-annotator.php:271
+#: dans-annotator.php:314
+msgid "Close"
+msgstr ""
+
+#: dans-annotator.php:275
+msgid "Selector:"
+msgstr ""
+
+#: dans-annotator.php:279
+msgid "Write a comment. Use @username to tag."
+msgstr ""
+
+#: dans-annotator.php:282
+msgid "Post"
+msgstr ""
+
+#: dans-annotator.php:283
+#: dans-annotator.php:295
+#: dans-annotator.php:302
+#: dans-annotator.php:351
+msgid "Cancel"
+msgstr ""
+
+#: dans-annotator.php:286
+msgid "Close Thread"
+msgstr ""
+
+#: dans-annotator.php:287
+msgid "Delete Thread"
+msgstr ""
+
+#: dans-annotator.php:294
+msgid "Yes, Close"
+msgstr ""
+
+#: dans-annotator.php:301
+msgid "Yes, Delete"
+msgstr ""
+
+#: dans-annotator.php:309
+msgid "All Annotations"
+msgstr ""
+
+#: dans-annotator.php:319
+msgid "No annotations yet."
+msgstr ""
+
+#: dans-annotator.php:320
+msgid "Click an element on the page to start annotating."
+msgstr ""
+
+#: dans-annotator.php:326
+msgid "Missing"
+msgstr ""
+
+#: dans-annotator.php:333
+msgid "Open"
+msgstr ""
+
+#: dans-annotator.php:340
+msgid "Closed"
+msgstr ""
+
+#: dans-annotator.php:350
+msgid "Create New"
+msgstr ""
+
+#: dans-annotator.php:353
+msgid "Disconnect"
+msgstr ""
+
+#: includes/admin.php:13
+#: includes/admin.php:141
+msgid "Dan's Annotator Settings"
+msgstr ""
+
+#: includes/admin.php:129
+msgid "Settings saved."
+msgstr ""
+
+#: includes/admin.php:135
+msgid "All Dan's Annotator data was deleted."
+msgstr ""
+
+#: includes/admin.php:148
+msgid "Collaboration"
+msgstr ""
+
+#: includes/admin.php:149
+msgid "Outside Collaborators"
+msgstr ""
+
+#: includes/admin.php:151
+msgid "Admin only"
+msgstr ""
+
+#: includes/admin.php:153
+msgid "Let invited collaborators comment without full accounts. We keep their sessions scoped to the threads you share with them."
+msgstr ""
+
+#: includes/admin.php:161
+msgid "Allow outside collaborators"
+msgstr ""
+
+#: includes/admin.php:163
+msgid "When enabled, invite links can be shared with non-users so they can participate in specific threads."
+msgstr ""
+
+#: includes/admin.php:172
+msgid "Auto-delete old threads"
+msgstr ""
+
+#: includes/admin.php:174
+msgid "Automatically remove annotation threads and comments after they have been inactive past the window below."
+msgstr ""
+
+#: includes/admin.php:179
+msgid "Auto-delete window (months since last activity)"
+msgstr ""
+
+#: includes/admin.php:186
+msgid "months"
+msgstr ""
+
+#: includes/admin.php:191
+msgid "Save Settings"
+msgstr ""
+
+#: includes/admin.php:198
+msgid "Fuel the roadmap"
+msgstr ""
+
+#: includes/admin.php:199
+msgid "Donate to Dan's Annotator"
+msgstr ""
+
+#: includes/admin.php:201
+msgid "Thank you"
+msgstr ""
+
+#: includes/admin.php:202
+msgid "Close donation panel"
+msgstr ""
+
+#: includes/admin.php:206
+msgid "Ethereum address"
+msgstr ""
+
+#: includes/admin.php:209
+msgid "Scan to donate"
+msgstr ""
+
+#: includes/admin.php:215
+msgid "Send any amount you like — every tip directly funds maintenance and features."
+msgstr ""
+
+#: includes/admin.php:222
+msgid "Maintenance"
+msgstr ""
+
+#: includes/admin.php:223
+msgid "Delete all Dan's Annotator data"
+msgstr ""
+
+#: includes/admin.php:225
+msgid "Irreversible"
+msgstr ""
+
+#: includes/admin.php:227
+msgid "Remove every annotation thread, comment, tag, and collaborator. Use when you need a clean slate."
+msgstr ""
+
+#: includes/admin.php:229
+msgid "Delete all Dan's Annotator data? This cannot be undone."
+msgstr ""
+
+#: includes/admin.php:232
+msgid "Delete Everything"
+msgstr ""
+
+#: includes/admin.php:325
+msgid "You do not have permission to delete Dan's Annotator data."
+msgstr ""
+
+#: includes/rest.php:773
+msgid "Someone"
+msgstr ""
+
+#. translators: 1: name of the person who tagged the user, 2: link to the thread.
+#: includes/rest.php:777
+#, php-format
+msgid "You were tagged in a note by %1$s — %2$s"
+msgstr ""
+
+#: includes/rest.php:799
+msgid "Please do not share this link; it is tied to your email address."
+msgstr ""
+
+#. translators: 1: name of the person who tagged you, 2: site name.
+#: includes/rest.php:805
+#, php-format
+msgid "%1$s tagged you in a note on %2$s"
+msgstr ""
+
+#. translators: %s: name of the person who tagged you.
+#: includes/rest.php:807
+#, php-format
+msgid "%s tagged you in a note:"
+msgstr ""
+
+#: includes/rest.php:808
+msgid "Open this note"
+msgstr ""
