@@ -36,6 +36,7 @@ services:
       - html:/var/www/html/
       - ..:/var/www/html/wp-content/plugins/current-devel-plugin/
       - ..:/workspace
+      - .htaccess:/var/www/html/.htaccess
     ports:
       - 80:80
 
