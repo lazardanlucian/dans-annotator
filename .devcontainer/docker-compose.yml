@@ -1,0 +1,44 @@
+services:
+  wordpress:
+    build:
+      context: .
+      dockerfile: wordpress.Dockerfile
+    depends_on:
+      - db
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_USER: wordpress
+      WORDPRESS_DB_PASSWORD: wordpress
+      WORDPRESS_DB_NAME: wordpress
+      WORDPRESS_TABLE_PREFIX: wp_
+      WORDPRESS_DEBUG: "1"
+      WORDPRESS_CONFIG_EXTRA: |
+        define( 'WP_DEBUG_LOG', true );
+        define( 'WP_DISABLE_FATAL_ERROR_HANDLER', true );
+        define( 'WP_ENVIRONMENT_TYPE', 'development' );
+        define( 'WP_HOME', getenv_docker('WORDPRESS_URL', '') );
+        define( 'WP_SITEURL', getenv_docker('WORDPRESS_URL', '') );
+    volumes:
+      - ..:/workspace
+    ports:
+      - 80:80
+
+  db:
+    image: mysql:8.0
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: wordpress
+      MYSQL_PASSWORD: wordpress
+    command: --default-authentication-plugin=mysql_native_password
+
+  mailpit:
+    image: axllent/mailpit:latest
+    restart: unless-stopped
+    ports:
+      - "8025:8025"
+      - "1025:1025"
+    environment:
+      MP_SMTP_BIND_ADDR: "0.0.0.0:1025"
+      MP_UI_BIND_ADDR: "0.0.0.0:8025"
