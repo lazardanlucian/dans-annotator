@@ -20,6 +20,8 @@ services:
         define( 'WP_SITEURL', getenv_docker('WORDPRESS_URL', '') );
     volumes:
       - ..:/workspace
+      - wp-content:/var/www/html/wp-content
+      - ..:/var/www/html/wp-content/plugins/${localWorkspaceFolderBasename}/
     ports:
       - 80:80
 
@@ -32,6 +34,8 @@ services:
       MYSQL_USER: wordpress
       MYSQL_PASSWORD: wordpress
     command: --default-authentication-plugin=mysql_native_password
+    volumes:
+      - mysql:/var/lib/mysql
 
   mailpit:
     image: axllent/mailpit:latest
@@ -42,3 +46,7 @@ services:
     environment:
       MP_SMTP_BIND_ADDR: "0.0.0.0:1025"
       MP_UI_BIND_ADDR: "0.0.0.0:8025"
+
+volumes:
+  wp-content:
+  mysql:

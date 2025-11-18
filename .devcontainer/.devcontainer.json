@@ -9,7 +9,7 @@
   ],
   "workspaceFolder": "/workspace",
   "forwardPorts": [
-    80,
+    443,
     8025
   ],
   "portsAttributes": {
