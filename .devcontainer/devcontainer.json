@@ -11,7 +11,7 @@
   "forwardPorts": [
     80,
     8025,
-    8080
+    82
   ],
   "portsAttributes": {
     "80": {
@@ -20,7 +20,7 @@
     "8025": {
       "label": "Mailpit UI"
     },
-    "8080": {
+    "82": {
       "label": "Adminer"
     }
   },
