@@ -1,5 +1,5 @@
 FROM wordpress:latest
-
+COPY .htaccess /var/www/html/.htaccess
 # Install git for working with the mounted repository and mark /workspace as safe.
 RUN apt-get update \
   && apt-get install -y --no-install-recommends git \
