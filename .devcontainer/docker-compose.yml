@@ -28,7 +28,7 @@ services:
       - ..:/var/www/html/wp-content/plugins/current-devel-plugin/
       - ..:/workspace
     ports:
-      - 443:80
+      - 80:80
 
   db:
     image: mysql:8.0
@@ -59,8 +59,9 @@ services:
 
   adminer:
     image: adminer
+    restart: always
     ports:
-      - "8080:8080"
+      - 8080:8080
 
 volumes:
   html:

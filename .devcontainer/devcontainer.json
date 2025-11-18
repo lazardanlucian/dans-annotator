@@ -9,12 +9,12 @@
   ],
   "workspaceFolder": "/workspace",
   "forwardPorts": [
-    443,
+    80,
     8025,
     8080
   ],
   "portsAttributes": {
-    "443": {
+    "80": {
       "label": "WordPress"
     },
     "8025": {
