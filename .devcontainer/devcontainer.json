@@ -26,6 +26,7 @@
   },
   "containerEnv": {
     "WORDPRESS_PLUGIN_SLUG": "${localWorkspaceFolderBasename}",
-    "WORDPRESS_URL": "https://${localEnv:CODESPACE_NAME}-80.${localEnv:GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN}"
+    "WORDPRESS_URL": "https://${localEnv:CODESPACE_NAME}-80.${localEnv:GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN}",
+    "WORDPRESS_HOST": "${localEnv:CODESPACE_NAME}-80.${localEnv:GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN}"
   }
 }

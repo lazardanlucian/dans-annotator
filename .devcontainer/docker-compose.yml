@@ -23,6 +23,7 @@ services:
         define( 'WP_ENVIRONMENT_TYPE', 'development' );
         define( 'WP_HOME', getenv_docker('WORDPRESS_URL', '') );
         define( 'WP_SITEURL', getenv_docker('WORDPRESS_URL', '') );
+        $_SERVER['HTTP_HOST'] = getenv_docker('WORDPRESS_HOST', '');
     volumes:
       - html:/var/www/html/
       - ..:/var/www/html/wp-content/plugins/current-devel-plugin/
