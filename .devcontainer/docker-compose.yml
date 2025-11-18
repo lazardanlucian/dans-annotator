@@ -4,7 +4,8 @@ services:
       context: .
       dockerfile: wordpress.Dockerfile
     depends_on:
-      - db
+      db:
+        condition: service_healthy
     environment:
       WORDPRESS_DB_HOST: db:3306
       WORDPRESS_DB_USER: wordpress
@@ -12,6 +13,10 @@ services:
       WORDPRESS_DB_NAME: wordpress
       WORDPRESS_TABLE_PREFIX: wp_
       WORDPRESS_DEBUG: "1"
+      WORDPRESS_TITLE: "Plugin Dev"
+      WORDPRESS_ADMIN_USER: dev
+      WORDPRESS_ADMIN_PASSWORD: dev
+      WORDPRESS_ADMIN_EMAIL: dev@example.com
       WORDPRESS_CONFIG_EXTRA: |
         define( 'WP_DEBUG_LOG', true );
         define( 'WP_DISABLE_FATAL_ERROR_HANDLER', true );
@@ -21,7 +26,7 @@ services:
     volumes:
       - ..:/workspace
       - wp-content:/var/www/html/wp-content
-      - ..:/var/www/html/wp-content/plugins/${localWorkspaceFolderBasename}/
+      - ..:/var/www/html/wp-content/plugins/${WORDPRESS_PLUGIN_SLUG}/
     ports:
       - 80:80
 
@@ -36,6 +41,11 @@ services:
     command: --default-authentication-plugin=mysql_native_password
     volumes:
       - mysql:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-p${MYSQL_ROOT_PASSWORD}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
 
   mailpit:
     image: axllent/mailpit:latest
