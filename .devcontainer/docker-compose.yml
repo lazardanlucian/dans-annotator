@@ -58,12 +58,6 @@ services:
       MP_SMTP_BIND_ADDR: "0.0.0.0:1025"
       MP_UI_BIND_ADDR: "0.0.0.0:8025"
 
-  adminer:
-    image: adminer
-    restart: always
-    ports:
-      - 82:8080
-
 volumes:
   html:
   mysql:
