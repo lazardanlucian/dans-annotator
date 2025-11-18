@@ -31,12 +31,6 @@ services:
           $cs_host = str_replace('https://', '', $cs_url);
           $_SERVER['HTTP_HOST'] = $cs_host;
         }
-    "CODESPACE_DOMAIN" : "${localEnv:GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN}:localhost",
-    "CODESPACE_NAME" : "${localEnv:CODESPACE_NAME}"
-
-
-        define( 'WP_HOME', getenv_docker('WORDPRESS_URL', '') );
-        define( 'WP_SITEURL', getenv_docker('WORDPRESS_URL', '') );
     volumes:
       - html:/var/www/html/
       - ..:/var/www/html/wp-content/plugins/current-devel-plugin/
