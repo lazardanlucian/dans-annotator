@@ -10,7 +10,8 @@
   "workspaceFolder": "/workspace",
   "forwardPorts": [
     80,
-    8025
+    8025,
+    8080
   ],
   "portsAttributes": {
     "80": {
@@ -18,6 +19,9 @@
     },
     "8025": {
       "label": "Mailpit UI"
+    },
+    "8080": {
+      "label": "Adminer"
     }
   },
   "containerEnv": {
