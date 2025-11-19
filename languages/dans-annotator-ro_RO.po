@@ -264,42 +264,9 @@ msgstr "Dezactivează dacă nu vrei ca butonul plutitor de donație și fereastr
 msgid "Save Settings"
 msgstr "Salvează setările"
 
-#: includes/admin.php:198
-msgid "Fuel the roadmap"
-msgstr "Alimentează foaia de parcurs"
-
-#: includes/admin.php:199
+#: includes/admin.php:223
 msgid "Donate to Dan's Annotator"
 msgstr "Donează pentru Dan's Annotator"
-
-#: includes/admin.php:201
-msgid "Thank you"
-msgstr "Mulțumesc"
-
-#: includes/admin.php:202
-msgid "Close donation panel"
-msgstr "Închide panoul de donații"
-
-#: includes/admin.php:206
-msgid "Ethereum address"
-msgstr "Adresă Ethereum"
-
-#: includes/admin.php:210
-msgid "Donate via QR"
-msgstr "Donează prin QR"
-
-#: includes/admin.php:214
-msgid "Bitcoin address"
-msgstr "Adresă Bitcoin"
-
-#: includes/admin.php:209
-msgid "Scan to donate"
-msgstr "Scanează pentru a dona"
-
-#: includes/admin.php:215
-msgid ""
-"Send any amount you like — every tip directly funds maintenance and features."
-msgstr "Trimite orice sumă — fiecare bacșiș finanțează direct mentenanța și funcționalitățile."
 
 #: includes/admin.php:222
 msgid "Maintenance"

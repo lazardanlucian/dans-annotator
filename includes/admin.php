@@ -130,6 +130,7 @@ function annotate_render_settings_page() {
     if ( ! current_user_can( 'manage_options' ) ) {
         return;
     }
+    $donate_iframe_src = esc_url( ANNOTATE_PLUGIN_URL . 'assets/donate-panel.html' );
 
     // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Core verifies the nonce on options save before adding this flag.
     if ( ! empty( $_GET['settings-updated'] ) ) {
@@ -142,11 +143,7 @@ function annotate_render_settings_page() {
         add_settings_error( 'annotate_messages', 'annotate_deleted', esc_html__( 'All Dan\'s Annotator data was deleted.', 'dans-annotator' ), 'updated' );
     }
 
-    $settings      = annotate_get_settings();
-    $eth_address   = '0xaf2c6Bfd1fF0434443854E566E88913Ea1C4e8e1';
-    $eth_link      = 'ethereum:0xaf2c6Bfd1fF0434443854E566E88913Ea1C4e8e1?value=0.2';
-    $btc_address   = 'bc1qdn3cu2gx9cpvgr57m37cq4zwt4dfgvrvasl806';
-    $btc_link      = 'bitcoin:bc1qdn3cu2gx9cpvgr57m37cq4zwt4dfgvrvasl806';
+    $settings = annotate_get_settings();
     ?>
     <div class="wrap annotate-admin">
         <h1><?php esc_html_e( 'Dan\'s Annotator Settings', 'dans-annotator' ); ?></h1>
@@ -214,41 +211,9 @@ function annotate_render_settings_page() {
                 </form>
             </div>
 
-                <div class="annotate-card annotate-card-donate">
-                    <div class="annotate-card-header">
-                        <div>
-                            <div class="annotate-eyebrow"><?php esc_html_e( 'Fuel the roadmap', 'dans-annotator' ); ?></div>
-                            <h2><?php esc_html_e( 'Donate to Dan\'s Annotator', 'dans-annotator' ); ?></h2>
-                        </div>
-                        <span class="annotate-chip"><?php esc_html_e( 'Thank you', 'dans-annotator' ); ?></span>
-                        <button type="button" class="annotate-modal-close" aria-label="<?php esc_attr_e( 'Close donation panel', 'dans-annotator' ); ?>">✕</button>
-                    </div>
-                    <p class="annotate-lead"><?php esc_html_e( 'Help Dan maintain this and other plugins. He wants to become a better programmer by building free plugins.', 'dans-annotator' ); ?></p>
-                    <div class="annotate-field annotate-donate-field">
-                        <label for="annotate-donate-eth"><?php esc_html_e( 'Ethereum address', 'dans-annotator' ); ?></label>
-                        <div class="annotate-donate-row">
-                            <div class="annotate-donate-qr" title="<?php esc_attr_e( 'Donate via QR', 'dans-annotator' ); ?>">
-                                <img src="<?php echo esc_url( ANNOTATE_PLUGIN_URL . 'assets/donate.jpg' ); ?>" alt="<?php esc_attr_e( 'Scan to donate', 'dans-annotator' ); ?>" />
-                            </div>
-                            <div class="annotate-donate-address" id="annotate-donate-eth" data-address="<?php echo esc_attr( $eth_address ); ?>">
-                                <a href="<?php echo esc_url( $eth_link, array( 'http', 'https', 'ethereum' ) ); ?>" class="annotate-donate-link"><?php echo esc_html( $eth_address ); ?></a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="annotate-field annotate-donate-field">
-                        <label for="annotate-donate-btc"><?php esc_html_e( 'Bitcoin address', 'dans-annotator' ); ?></label>
-                        <div class="annotate-donate-row">
-                            <div class="annotate-donate-qr" title="<?php esc_attr_e( 'Donate via QR', 'dans-annotator' ); ?>">
-                                <img src="<?php echo esc_url( ANNOTATE_PLUGIN_URL . 'assets/donate-bitcoin.jpg' ); ?>" alt="<?php esc_attr_e( 'Scan to donate', 'dans-annotator' ); ?>" />
-                            </div>
-                            <div class="annotate-donate-address" id="annotate-donate-btc" data-address="<?php echo esc_attr( $btc_address ); ?>">
-                                <a href="<?php echo esc_url( $btc_link, array( 'http', 'https', 'bitcoin' ) ); ?>" class="annotate-donate-link"><?php echo esc_html( $btc_address ); ?></a>
-                            </div>
-                        </div>
-                        <p class="annotate-help"><?php esc_html_e( 'Send any amount you like — every tip directly funds maintenance and features.', 'dans-annotator' ); ?></p>
-                    </div>
-                </div>
+            <div class="annotate-card annotate-card-donate" data-donate-iframe="<?php echo esc_attr( $donate_iframe_src ); ?>">
+                <iframe class="annotate-donate-iframe" src="<?php echo $donate_iframe_src; ?>" title="<?php esc_attr_e( 'Donate to Dan\'s Annotator', 'dans-annotator' ); ?>" loading="lazy" referrerpolicy="no-referrer"></iframe>
+            </div>
 
             <div class="annotate-card annotate-card-danger">
                 <div class="annotate-card-header">
@@ -291,82 +256,57 @@ function annotate_render_settings_page() {
             annotateAdminToggleRange();
         }
 
-        function annotateFindDonateContainer(link){
-            if(!link){return null;}
-            if(link.closest){
-                return link.closest('.annotate-donate-address');
-            }
-            var current=link.parentElement;
-            while(current && current !== document){
-                if(current.classList && current.classList.contains('annotate-donate-address')){
-                    return current;
-                }
-                current=current.parentElement;
-            }
-            return null;
-        }
-
-        function annotateCopyDonateLink(e){
-            var link=e && e.currentTarget ? e.currentTarget : e.target;
-            var container=annotateFindDonateContainer(link);
-            if(!container||!link){return;}
-            var address=container.getAttribute('data-address') || link.textContent || '';
-            var href=link.getAttribute('href');
-            if(!address||!href){return;}
-            if(navigator.clipboard && navigator.clipboard.writeText){
-                var openInNewTab=e && (e.metaKey || e.ctrlKey || e.button===1);
-                e.preventDefault();
-                navigator.clipboard.writeText(address).then(function(){
-                    link.classList.add('is-copied');
-                    setTimeout(function(){link.classList.remove('is-copied');},900);
-                    setTimeout(function(){
-                        if(openInNewTab){
-                            window.open(href,'_blank');
-                        }else{
-                            window.location.href=href;
-                        }
-                    },120);
-                }).catch(function(){
-                    if(openInNewTab){
-                        window.open(href,'_blank');
-                    }else{
-                        window.location.href=href;
-                    }
-                });
-            }
-        }
-
-        var donateLinks=document.querySelectorAll('.annotate-donate-link');
-        if(donateLinks && donateLinks.length){
-            for(var i=0;i<donateLinks.length;i++){
-                donateLinks[i].addEventListener('click',annotateCopyDonateLink);
-            }
-        }
-
-        // Donation modal open on page load
-        var wrapper=document.querySelector('.annotate-admin');
         var donateCard=document.querySelector('.annotate-card-donate');
-        var closeBtn=document.querySelector('.annotate-modal-close');
-        if(wrapper && donateCard){
-            wrapper.classList.add('is-donate-open');
-            donateCard.classList.add('is-modal');
-        }
-        function closeDonateModal(){
-            if(!wrapper || !donateCard){return;}
-            donateCard.classList.add('is-leaving');
-            setTimeout(function(){
-                wrapper.classList.remove('is-donate-open');
-                donateCard.classList.remove('is-modal');
-                donateCard.classList.remove('is-leaving');
-                if(closeBtn){
-                    closeBtn.remove();
-                }
-            },350);
-        }
-        if(closeBtn){
-            closeBtn.addEventListener('click',closeDonateModal);
+        if(donateCard){
+            var iframeSrc=donateCard.getAttribute('data-donate-iframe');
+            if(iframeSrc){
+                annotateAdminShowDonateOverlay(iframeSrc);
+            }
         }
     });
+
+    function annotateAdminEscapeAttr(str){
+        if(!str){return '';}
+        return String(str).replace(/&/g,'&amp;').replace(/"/g,'&quot;');
+    }
+
+    function annotateAdminShowDonateOverlay(iframeSrc){
+        var existing=document.getElementById('annotate-admin-donate-overlay');
+        if(existing){existing.parentNode.removeChild(existing);}
+        var modal=document.createElement('div');
+        modal.id='annotate-admin-donate-overlay';
+        modal.className='annotate-donate-modal annotate-donate-modal-overlay';
+        modal.setAttribute('role','dialog');
+        modal.setAttribute('aria-modal','true');
+        modal.innerHTML='' +
+            '<div class="annotate-donate-backdrop"></div>' +
+            '<div class="annotate-donate-card" aria-label="<?php echo esc_attr( 'Donate to Dan\'s Annotator', 'dans-annotator' ); ?>">' +
+                '<button type="button" class="annotate-modal-close" aria-label="<?php esc_attr_e( 'Close donation panel', 'dans-annotator' ); ?>">✕</button>' +
+                '<iframe class="annotate-donate-iframe" src="'+annotateAdminEscapeAttr(iframeSrc)+'" title="<?php esc_attr_e( 'Donate to Dan\'s Annotator', 'dans-annotator' ); ?>" loading="lazy" referrerpolicy="no-referrer"></iframe>' +
+            '</div>';
+        document.body.appendChild(modal);
+        var hideModal=function(){
+            modal.setAttribute('aria-hidden','true');
+            modal.parentNode.removeChild(modal);
+        };
+        var closeBtn=modal.querySelector('.annotate-modal-close');
+        var backdrop=modal.querySelector('.annotate-donate-backdrop');
+        if(closeBtn){
+            closeBtn.addEventListener('click',function(e){
+                e.preventDefault();
+                hideModal();
+            });
+        }
+        if(backdrop){
+            backdrop.addEventListener('click',hideModal);
+        }
+        document.addEventListener('keydown',function escHandler(ev){
+            if(ev.key==='Escape'){
+                hideModal();
+                document.removeEventListener('keydown',escHandler);
+            }
+        });
+    }
     </script>
     <?php
 }

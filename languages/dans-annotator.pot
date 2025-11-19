@@ -271,40 +271,8 @@ msgstr ""
 msgid "Save Settings"
 msgstr ""
 
-#: includes/admin.php:198
-msgid "Fuel the roadmap"
-msgstr ""
-
-#: includes/admin.php:199
+#: includes/admin.php:223
 msgid "Donate to Dan's Annotator"
-msgstr ""
-
-#: includes/admin.php:201
-msgid "Thank you"
-msgstr ""
-
-#: includes/admin.php:202
-msgid "Close donation panel"
-msgstr ""
-
-#: includes/admin.php:206
-msgid "Ethereum address"
-msgstr ""
-
-#: includes/admin.php:210
-msgid "Donate via QR"
-msgstr ""
-
-#: includes/admin.php:214
-msgid "Bitcoin address"
-msgstr ""
-
-#: includes/admin.php:209
-msgid "Scan to donate"
-msgstr ""
-
-#: includes/admin.php:215
-msgid "Send any amount you like — every tip directly funds maintenance and features."
 msgstr ""
 
 #: includes/admin.php:222

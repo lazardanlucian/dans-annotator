@@ -13,10 +13,7 @@
         const COLLABORATOR_CONTROLS_DISABLED = !!(AnnotateData && AnnotateData.disable_collaborator_controls);
         const ASSETS_URL = (AnnotateData && AnnotateData.assets_url) ? AnnotateData.assets_url.replace(/\/?$/, '/') : '';
         const SHOW_DONATE_BUTTON = (typeof AnnotateData.show_donate_button === 'undefined') ? true : !!AnnotateData.show_donate_button;
-        const DONATE_ETH_ADDRESS = '0xaf2c6Bfd1fF0434443854E566E88913Ea1C4e8e1';
-        const DONATE_ETH_LINK = 'ethereum:0xaf2c6Bfd1fF0434443854E566E88913Ea1C4e8e1?value=0.2';
-        const DONATE_BTC_ADDRESS = 'bc1qdn3cu2gx9cpvgr57m37cq4zwt4dfgvrvasl806';
-        const DONATE_BTC_LINK = 'bitcoin:bc1qdn3cu2gx9cpvgr57m37cq4zwt4dfgvrvasl806';
+        const DONATE_PANEL_URL = ASSETS_URL + 'donate-panel.html';
         const CURRENT_PAGE_URL = (function(){
             try {
                 const url = new URL(window.location.href);
@@ -385,32 +382,9 @@
             const donateMarkup = `
                 <div id="annotate-donate-modal" class="annotate-donate-modal" hidden aria-hidden="true">
                     <div class="annotate-donate-backdrop"></div>
-                    <div class="annotate-donate-card" role="dialog" aria-modal="true" aria-labelledby="annotate-donate-title">
+                    <div class="annotate-donate-card" role="dialog" aria-modal="true" aria-label="Donate to Dan\'s Annotator">
                         <button type="button" class="annotate-donate-close" aria-label="Close donation modal">✕</button>
-                        <div class="annotate-donate-eyebrow">Fuel the roadmap</div>
-                        <h3 id="annotate-donate-title">Donate to Dan\'s Annotator</h3>
-                        <p class="annotate-donate-lead">Help Dan maintain this and other plugins. He wants to become a better programmer by building free plugins.</p>
-                        <div class="annotate-donate-methods">
-                            <div class="annotate-donate-body">
-                                <div class="annotate-donate-qr">
-                                    <img src="${ASSETS_URL}donate.jpg" alt="Scan to donate" />
-                                </div>
-                                <div class="annotate-donate-address" data-address="${DONATE_ETH_ADDRESS}">
-                                    <span class="annotate-donate-label">Ethereum address</span>
-                                    <a href="${DONATE_ETH_LINK}" class="annotate-donate-link">${DONATE_ETH_ADDRESS}</a>
-                                </div>
-                            </div>
-                            <div class="annotate-donate-body">
-                                <div class="annotate-donate-qr">
-                                    <img src="${ASSETS_URL}donate-bitcoin.jpg" alt="Scan to donate" />
-                                </div>
-                                <div class="annotate-donate-address" data-address="${DONATE_BTC_ADDRESS}">
-                                    <span class="annotate-donate-label">Bitcoin address</span>
-                                    <a href="${DONATE_BTC_LINK}" class="annotate-donate-link">${DONATE_BTC_ADDRESS}</a>
-                                </div>
-                            </div>
-                        </div>
-                        <p class="annotate-donate-help">Click to copy either address. We appreciate any amount!</p>
+                        <iframe class="annotate-donate-iframe" src="${DONATE_PANEL_URL}" title="Donate to Dan\'s Annotator" loading="lazy" referrerpolicy="no-referrer"></iframe>
                     </div>
                 </div>
             `;
@@ -440,42 +414,6 @@
                     hideModal();
                 }
             });
-
-            const $links = $modal.find('.annotate-donate-link');
-            if ($links.length) {
-                $links.each(function(){
-                    const $link = $(this);
-                    $link.on('click', function(e){
-                        if (!navigator.clipboard || !navigator.clipboard.writeText) {
-                            return;
-                        }
-                        const address = $link.data('address') || $link.text() || '';
-                        const href = $link.attr('href');
-                        if (!address || !href) {
-                            return;
-                        }
-                        const openInNewTab = e && (e.metaKey || e.ctrlKey || e.button === 1);
-                        e.preventDefault();
-                        navigator.clipboard.writeText(address).then(function(){
-                            $link.addClass('is-copied');
-                            setTimeout(function(){ $link.removeClass('is-copied'); }, 1200);
-                            setTimeout(function(){
-                                if (openInNewTab) {
-                                    window.open(href, '_blank');
-                                } else {
-                                    window.location.href = href;
-                                }
-                            }, 140);
-                        }).catch(function(){
-                            if (openInNewTab) {
-                                window.open(href, '_blank');
-                            } else {
-                                window.location.href = href;
-                            }
-                        });
-                    });
-                });
-            }
 
             return $modal;
         }
