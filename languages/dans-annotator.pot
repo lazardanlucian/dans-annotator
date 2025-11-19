@@ -259,6 +259,14 @@ msgstr ""
 msgid "months"
 msgstr ""
 
+#: includes/admin.php:204
+msgid "Show donate button on frontend"
+msgstr ""
+
+#: includes/admin.php:206
+msgid "Disable this if you do not want the floating donate button and modal available to site users."
+msgstr ""
+
 #: includes/admin.php:191
 msgid "Save Settings"
 msgstr ""

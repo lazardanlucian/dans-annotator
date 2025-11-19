@@ -252,6 +252,14 @@ msgstr "Interval pentru ștergere automată (luni de inactivitate)"
 msgid "months"
 msgstr "luni"
 
+#: includes/admin.php:204
+msgid "Show donate button on frontend"
+msgstr "Afișează butonul de donație în frontend"
+
+#: includes/admin.php:206
+msgid "Disable this if you do not want the floating donate button and modal available to site users."
+msgstr "Dezactivează dacă nu vrei ca butonul plutitor de donație și fereastra să fie vizibile pentru utilizatorii site-ului."
+
 #: includes/admin.php:191
 msgid "Save Settings"
 msgstr "Salvează setările"

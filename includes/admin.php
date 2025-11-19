@@ -27,6 +27,7 @@ function annotate_get_settings_defaults() {
         'allow_outside_collaborators' => true,
         'auto_delete_enabled'        => true,
         'auto_delete_months'         => annotate_default_auto_delete_months(),
+        'show_donate_button'         => true,
     );
 }
 
@@ -61,6 +62,10 @@ function annotate_seed_settings_defaults() {
         $existing['allow_outside_collaborators'] = true;
         $updated = true;
     }
+    if ( ! isset( $existing['show_donate_button'] ) ) {
+        $existing['show_donate_button'] = true;
+        $updated = true;
+    }
     if ( $updated ) {
         update_option( 'dans_annotator_settings', $existing );
     }
@@ -75,6 +80,7 @@ function annotate_get_settings() {
     $settings = wp_parse_args( $saved, $defaults );
     $settings['allow_outside_collaborators'] = ! empty( $settings['allow_outside_collaborators'] );
     $settings['auto_delete_enabled']         = ! empty( $settings['auto_delete_enabled'] );
+    $settings['show_donate_button']          = ! empty( $settings['show_donate_button'] );
     if ( empty( $settings['auto_delete_months'] ) ) {
         // Support legacy stored date by estimating months difference.
         if ( ! empty( $settings['auto_delete_date'] ) ) {
@@ -99,6 +105,7 @@ function annotate_sanitize_settings( $input ) {
 
     $clean['allow_outside_collaborators'] = ! empty( $input['allow_outside_collaborators'] ) ? 1 : 0;
     $clean['auto_delete_enabled']         = ! empty( $input['auto_delete_enabled'] ) ? 1 : 0;
+    $clean['show_donate_button']          = ! empty( $input['show_donate_button'] ) ? 1 : 0;
 
     $months = isset( $input['auto_delete_months'] ) ? intval( $input['auto_delete_months'] ) : 0;
     if ( $months < 1 ) {
@@ -186,6 +193,17 @@ function annotate_render_settings_page() {
                                 <span class="annotate-range-units"><?php esc_html_e( 'months', 'dans-annotator' ); ?></span>
                             </div>
                         </div>
+                    </div>
+
+                    <div class="annotate-card-divider"></div>
+
+                    <div class="annotate-field annotate-toggle-field">
+                        <label class="annotate-switch">
+                            <input type="checkbox" name="dans_annotator_settings[show_donate_button]" value="1" <?php checked( $settings['show_donate_button'], true ); ?> />
+                            <span class="annotate-slider" aria-hidden="true"></span>
+                            <span class="annotate-switch-label"><?php esc_html_e( 'Show donate button on frontend', 'dans-annotator' ); ?></span>
+                        </label>
+                        <p class="annotate-help"><?php esc_html_e( 'Disable this if you do not want the floating donate button and modal available to site users.', 'dans-annotator' ); ?></p>
                     </div>
 
                     <?php submit_button( esc_html__( 'Save Settings', 'dans-annotator' ), 'primary', 'submit', false ); ?>

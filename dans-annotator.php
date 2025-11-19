@@ -137,6 +137,9 @@ class Annotate_Plugin {
             return;
         }
 
+        $settings = function_exists( 'annotate_get_settings' ) ? annotate_get_settings() : array();
+        $show_donate_button = isset( $settings['show_donate_button'] ) ? (bool) $settings['show_donate_button'] : true;
+
         $is_collaborator = function_exists( 'annotate_is_collaborator_session' ) ? annotate_is_collaborator_session() : false;
         $active_actor    = function_exists( 'annotate_get_active_actor_context' ) ? annotate_get_active_actor_context() : null;
         $current_actor   = array(
@@ -179,6 +182,7 @@ class Annotate_Plugin {
                 'collab_disconnect_confirm' => esc_html__( 'Disconnect from this session? You will need to reopen the link from your email.', 'dans-annotator' ),
                 'collab_disconnect_success' => esc_html__( 'Disconnected. Please revisit the email link to continue annotating.', 'dans-annotator' ),
             ),
+            'show_donate_button' => $show_donate_button,
         ) );
     }
 

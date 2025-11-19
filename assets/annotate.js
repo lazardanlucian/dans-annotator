@@ -12,6 +12,7 @@
         const IS_COLLABORATOR_SESSION = !!AnnotateData.is_collaborator_session;
         const COLLABORATOR_CONTROLS_DISABLED = !!(AnnotateData && AnnotateData.disable_collaborator_controls);
         const ASSETS_URL = (AnnotateData && AnnotateData.assets_url) ? AnnotateData.assets_url.replace(/\/?$/, '/') : '';
+        const SHOW_DONATE_BUTTON = (typeof AnnotateData.show_donate_button === 'undefined') ? true : !!AnnotateData.show_donate_button;
         const DONATE_ADDRESS = '0xaf2c6Bfd1fF0434443854E566E88913Ea1C4e8e1';
         const DONATE_LINK = 'ethereum:0xaf2c6Bfd1fF0434443854E566E88913Ea1C4e8e1?value=0.2';
         const CURRENT_PAGE_URL = (function(){
@@ -375,6 +376,7 @@
         $copyLinkHeader.on('click', sharedCopyHandler);
 
         function ensureDonateModal(){
+            if (!SHOW_DONATE_BUTTON) return $();
             let $modal = $('#annotate-donate-modal');
             if ($modal.length) return $modal;
 
@@ -457,7 +459,9 @@
         }
 
         function openDonateModal(){
+            if (!SHOW_DONATE_BUTTON) return;
             const $modal = ensureDonateModal();
+            if (!$modal.length) return;
             const show = $modal.data('show');
             if (typeof show === 'function') {
                 show();
@@ -465,7 +469,7 @@
         }
 
         const $floatingDonate = (function(){
-            if (!$floatingControls.length) return $();
+            if (!SHOW_DONATE_BUTTON || !$floatingControls.length) return $();
             let $btn = $floatingControls.find('.annotate-floating-donate');
             if ($btn.length) return $btn;
             $btn = $('<button type="button" class="annotate-floating-btn annotate-floating-donate" aria-haspopup="dialog">Donate</button>');
