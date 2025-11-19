@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Dan's Annotator
  * Description: Page annotation system — with threaded comments.
- * Version: 1.0.0
+ * Version: 1.0.1
  * Author: DanL
  * License: GPLv2 or later
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -149,8 +149,8 @@ class Annotate_Plugin {
         );
         $disable_controls = ( $active_actor && ! empty( $active_actor['is_collaborator'] ) );
 
-        wp_enqueue_style( 'annotate-css', ANNOTATE_PLUGIN_URL . 'assets/annotate.css', array(), '1.0.0' );
-        wp_enqueue_script( 'annotate-js', ANNOTATE_PLUGIN_URL . 'assets/annotate.js', array( 'jquery' ), '1.0.0', true );
+        wp_enqueue_style( 'annotate-css', ANNOTATE_PLUGIN_URL . 'assets/annotate.css', array(), '1.0.1' );
+        wp_enqueue_script( 'annotate-js', ANNOTATE_PLUGIN_URL . 'assets/annotate.js', array( 'jquery' ), '1.0.1', true );
 
         wp_localize_script( 'annotate-js', 'AnnotateData', array(
             'root' => esc_url_raw( rest_url( 'annotate/v1' ) ),

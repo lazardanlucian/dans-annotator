@@ -2,7 +2,7 @@
 # This file is distributed under the GPLv2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Dan's Annotator 1.0.0\n"
+"Project-Id-Version: Dan's Annotator 1.0.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/dans-annotator\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -289,6 +289,14 @@ msgstr ""
 
 #: includes/admin.php:206
 msgid "Ethereum address"
+msgstr ""
+
+#: includes/admin.php:210
+msgid "Donate via QR"
+msgstr ""
+
+#: includes/admin.php:214
+msgid "Bitcoin address"
 msgstr ""
 
 #: includes/admin.php:209

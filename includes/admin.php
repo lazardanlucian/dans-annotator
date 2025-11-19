@@ -123,7 +123,7 @@ function annotate_admin_enqueue_assets( $hook ) {
     if ( 'settings_page_annotate-settings' !== $hook ) {
         return;
     }
-    wp_enqueue_style( 'annotate-admin', ANNOTATE_PLUGIN_URL . 'assets/annotate-admin.css', array(), '1.0.0' );
+    wp_enqueue_style( 'annotate-admin', ANNOTATE_PLUGIN_URL . 'assets/annotate-admin.css', array(), '1.0.1' );
 }
 
 function annotate_render_settings_page() {
@@ -142,7 +142,11 @@ function annotate_render_settings_page() {
         add_settings_error( 'annotate_messages', 'annotate_deleted', esc_html__( 'All Dan\'s Annotator data was deleted.', 'dans-annotator' ), 'updated' );
     }
 
-    $settings = annotate_get_settings();
+    $settings      = annotate_get_settings();
+    $eth_address   = '0xaf2c6Bfd1fF0434443854E566E88913Ea1C4e8e1';
+    $eth_link      = 'ethereum:0xaf2c6Bfd1fF0434443854E566E88913Ea1C4e8e1?value=0.2';
+    $btc_address   = 'bc1qdn3cu2gx9cpvgr57m37cq4zwt4dfgvrvasl806';
+    $btc_link      = 'bitcoin:bc1qdn3cu2gx9cpvgr57m37cq4zwt4dfgvrvasl806';
     ?>
     <div class="wrap annotate-admin">
         <h1><?php esc_html_e( 'Dan\'s Annotator Settings', 'dans-annotator' ); ?></h1>
@@ -223,14 +227,26 @@ function annotate_render_settings_page() {
                     <div class="annotate-field annotate-donate-field">
                         <label for="annotate-donate-eth"><?php esc_html_e( 'Ethereum address', 'dans-annotator' ); ?></label>
                         <div class="annotate-donate-row">
-                            <div class="annotate-donate-qr" title="Donate via QR">
+                            <div class="annotate-donate-qr" title="<?php esc_attr_e( 'Donate via QR', 'dans-annotator' ); ?>">
                                 <img src="<?php echo esc_url( ANNOTATE_PLUGIN_URL . 'assets/donate.jpg' ); ?>" alt="<?php esc_attr_e( 'Scan to donate', 'dans-annotator' ); ?>" />
                             </div>
-                            <div class="annotate-donate-address" id="annotate-donate-eth" data-eth="0xaf2c6Bfd1fF0434443854E566E88913Ea1C4e8e1">
-                                <a href="ethereum:0xaf2c6Bfd1fF0434443854E566E88913Ea1C4e8e1?value=0.2" class="annotate-donate-link">0xaf2c6Bfd1fF0434443854E566E88913Ea1C4e8e1</a>
+                            <div class="annotate-donate-address" id="annotate-donate-eth" data-address="<?php echo esc_attr( $eth_address ); ?>">
+                                <a href="<?php echo esc_url( $eth_link, array( 'http', 'https', 'ethereum' ) ); ?>" class="annotate-donate-link"><?php echo esc_html( $eth_address ); ?></a>
                             </div>
                         </div>
-                    <p class="annotate-help"><?php esc_html_e( 'Send any amount you like — every tip directly funds maintenance and features.', 'dans-annotator' ); ?></p>
+                    </div>
+
+                    <div class="annotate-field annotate-donate-field">
+                        <label for="annotate-donate-btc"><?php esc_html_e( 'Bitcoin address', 'dans-annotator' ); ?></label>
+                        <div class="annotate-donate-row">
+                            <div class="annotate-donate-qr" title="<?php esc_attr_e( 'Donate via QR', 'dans-annotator' ); ?>">
+                                <img src="<?php echo esc_url( ANNOTATE_PLUGIN_URL . 'assets/donate-bitcoin.jpg' ); ?>" alt="<?php esc_attr_e( 'Scan to donate', 'dans-annotator' ); ?>" />
+                            </div>
+                            <div class="annotate-donate-address" id="annotate-donate-btc" data-address="<?php echo esc_attr( $btc_address ); ?>">
+                                <a href="<?php echo esc_url( $btc_link, array( 'http', 'https', 'bitcoin' ) ); ?>" class="annotate-donate-link"><?php echo esc_html( $btc_address ); ?></a>
+                            </div>
+                        </div>
+                        <p class="annotate-help"><?php esc_html_e( 'Send any amount you like — every tip directly funds maintenance and features.', 'dans-annotator' ); ?></p>
                     </div>
                 </div>
 
@@ -275,11 +291,26 @@ function annotate_render_settings_page() {
             annotateAdminToggleRange();
         }
 
-        window.annotateCopyEth=function(e){
+        function annotateFindDonateContainer(link){
+            if(!link){return null;}
+            if(link.closest){
+                return link.closest('.annotate-donate-address');
+            }
+            var current=link.parentElement;
+            while(current && current !== document){
+                if(current.classList && current.classList.contains('annotate-donate-address')){
+                    return current;
+                }
+                current=current.parentElement;
+            }
+            return null;
+        }
+
+        function annotateCopyDonateLink(e){
             var link=e && e.currentTarget ? e.currentTarget : e.target;
-            var container=document.getElementById('annotate-donate-eth');
+            var container=annotateFindDonateContainer(link);
             if(!container||!link){return;}
-            var address=container.getAttribute('data-eth');
+            var address=container.getAttribute('data-address') || link.textContent || '';
             var href=link.getAttribute('href');
             if(!address||!href){return;}
             if(navigator.clipboard && navigator.clipboard.writeText){
@@ -305,9 +336,11 @@ function annotate_render_settings_page() {
             }
         }
 
-        var donateLink=document.querySelector('.annotate-donate-link');
-        if(donateLink){
-            donateLink.addEventListener('click',annotateCopyEth);
+        var donateLinks=document.querySelectorAll('.annotate-donate-link');
+        if(donateLinks && donateLinks.length){
+            for(var i=0;i<donateLinks.length;i++){
+                donateLinks[i].addEventListener('click',annotateCopyDonateLink);
+            }
         }
 
         // Donation modal open on page load

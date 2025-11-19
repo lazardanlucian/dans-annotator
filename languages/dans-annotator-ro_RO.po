@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Annotate 1.0.0\n"
+"Project-Id-Version: Annotate 1.0.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/dans-annotator\n"
 "POT-Creation-Date: 2025-11-16T12:27:34+00:00\n"
 "Language: ro_RO\n"
@@ -283,6 +283,14 @@ msgstr "Închide panoul de donații"
 #: includes/admin.php:206
 msgid "Ethereum address"
 msgstr "Adresă Ethereum"
+
+#: includes/admin.php:210
+msgid "Donate via QR"
+msgstr "Donează prin QR"
+
+#: includes/admin.php:214
+msgid "Bitcoin address"
+msgstr "Adresă Bitcoin"
 
 #: includes/admin.php:209
 msgid "Scan to donate"

@@ -265,6 +265,12 @@ body:not(.annotate-enabled) #annotate-panel {
     color:#475569;
 }
 
+.annotate-donate-methods {
+    display:flex;
+    flex-direction:column;
+    gap:16px;
+}
+
 .annotate-donate-body {
     display:grid;
     grid-template-columns:1fr 1.4fr;
