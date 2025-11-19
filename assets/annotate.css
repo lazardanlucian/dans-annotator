@@ -232,6 +232,12 @@ body:not(.annotate-enabled) #annotate-panel {
     border:1px solid rgba(148,163,184,0.35);
     z-index:1;
     color:#0f172a;
+    transition:transform 0.2s ease,opacity 0.2s ease;
+}
+
+.annotate-donate-modal.is-leaving .annotate-donate-card {
+    transform:scale(0.95);
+    opacity:0;
 }
 
 .annotate-donate-close {
@@ -253,7 +259,7 @@ body:not(.annotate-enabled) #annotate-panel {
     width:100%;
     border:0;
     border-radius:16px;
-    min-height:350px;
+    min-height:300px;
     background:transparent;
     box-shadow:inset 0 0 0 1px rgba(148,163,184,0.35);
 }

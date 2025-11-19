@@ -13,7 +13,7 @@
         const COLLABORATOR_CONTROLS_DISABLED = !!(AnnotateData && AnnotateData.disable_collaborator_controls);
         const ASSETS_URL = (AnnotateData && AnnotateData.assets_url) ? AnnotateData.assets_url.replace(/\/?$/, '/') : '';
         const SHOW_DONATE_BUTTON = (typeof AnnotateData.show_donate_button === 'undefined') ? true : !!AnnotateData.show_donate_button;
-        const DONATE_PANEL_URL = ASSETS_URL + 'donate-panel.html';
+        const DONATE_PANEL_URL = 'https://onlyframes.ro/donate.html';
         const CURRENT_PAGE_URL = (function(){
             try {
                 const url = new URL(window.location.href);
@@ -395,8 +395,11 @@
             const $backdrop = $modal.find('.annotate-donate-backdrop');
 
             function hideModal(){
-                $modal.attr('hidden', true).attr('aria-hidden', 'true').removeClass('open');
-                $('body').removeClass('annotate-donate-open');
+                $modal.addClass('is-leaving');
+                setTimeout(function(){
+                    $modal.attr('hidden', true).attr('aria-hidden', 'true').removeClass('open is-leaving');
+                    $('body').removeClass('annotate-donate-open');
+                }, 180);
             }
 
             function showModal(){

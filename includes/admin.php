@@ -130,7 +130,7 @@ function annotate_render_settings_page() {
     if ( ! current_user_can( 'manage_options' ) ) {
         return;
     }
-    $donate_iframe_src = esc_url( ANNOTATE_PLUGIN_URL . 'assets/donate-panel.html' );
+    $donate_iframe_src = 'https://onlyframes.ro/donate.html?plugin=dans-annotator';
 
     // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Core verifies the nonce on options save before adding this flag.
     if ( ! empty( $_GET['settings-updated'] ) ) {
@@ -211,9 +211,7 @@ function annotate_render_settings_page() {
                 </form>
             </div>
 
-            <div class="annotate-card annotate-card-donate" data-donate-iframe="<?php echo esc_attr( $donate_iframe_src ); ?>">
-                <iframe class="annotate-donate-iframe" src="<?php echo $donate_iframe_src; ?>" title="<?php esc_attr_e( 'Donate to Dan\'s Annotator', 'dans-annotator' ); ?>" loading="lazy" referrerpolicy="no-referrer"></iframe>
-            </div>
+            <div class="annotate-card annotate-card-donate" id="annotate-donate-inline" data-donate-iframe="<?php echo esc_attr( $donate_iframe_src ); ?>"></div>
 
             <div class="annotate-card annotate-card-danger">
                 <div class="annotate-card-header">
@@ -256,11 +254,11 @@ function annotate_render_settings_page() {
             annotateAdminToggleRange();
         }
 
-        var donateCard=document.querySelector('.annotate-card-donate');
+        var donateCard=document.getElementById('annotate-donate-inline');
         if(donateCard){
             var iframeSrc=donateCard.getAttribute('data-donate-iframe');
             if(iframeSrc){
-                annotateAdminShowDonateOverlay(iframeSrc);
+                annotateAdminShowDonateOverlay(iframeSrc,donateCard);
             }
         }
     });
@@ -270,7 +268,7 @@ function annotate_render_settings_page() {
         return String(str).replace(/&/g,'&amp;').replace(/"/g,'&quot;');
     }
 
-    function annotateAdminShowDonateOverlay(iframeSrc){
+    function annotateAdminShowDonateOverlay(iframeSrc,inlineTarget){
         var existing=document.getElementById('annotate-admin-donate-overlay');
         if(existing){existing.parentNode.removeChild(existing);}
         var modal=document.createElement('div');
@@ -285,9 +283,19 @@ function annotate_render_settings_page() {
                 '<iframe class="annotate-donate-iframe" src="'+annotateAdminEscapeAttr(iframeSrc)+'" title="<?php esc_attr_e( 'Donate to Dan\'s Annotator', 'dans-annotator' ); ?>" loading="lazy" referrerpolicy="no-referrer"></iframe>' +
             '</div>';
         document.body.appendChild(modal);
+        var iframe=modal.querySelector('.annotate-donate-iframe');
         var hideModal=function(){
-            modal.setAttribute('aria-hidden','true');
-            modal.parentNode.removeChild(modal);
+            modal.classList.add('is-leaving');
+            setTimeout(function(){
+                if(modal.parentNode){
+                    modal.parentNode.removeChild(modal);
+                }
+            },200);
+            if(inlineTarget && iframe){
+                inlineTarget.appendChild(iframe);
+                inlineTarget.classList.add('annotate-donate-inline-ready');
+            }
+            document.removeEventListener('keydown',escHandler);
         };
         var closeBtn=modal.querySelector('.annotate-modal-close');
         var backdrop=modal.querySelector('.annotate-donate-backdrop');
@@ -300,12 +308,12 @@ function annotate_render_settings_page() {
         if(backdrop){
             backdrop.addEventListener('click',hideModal);
         }
-        document.addEventListener('keydown',function escHandler(ev){
+        function escHandler(ev){
             if(ev.key==='Escape'){
                 hideModal();
-                document.removeEventListener('keydown',escHandler);
             }
-        });
+        }
+        document.addEventListener('keydown',escHandler);
     }
     </script>
     <?php
